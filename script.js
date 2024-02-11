@@ -1,29 +1,25 @@
 // const arr = [1, 2, 3, 4, 1, 0, 2, 2];
 
+// const divide = (arr, n) => {
 const divide = (arr, n) => {
-  // Write your code here
-	let ans = [];
-    for(let i=0;i<arr.length;i++){
-        sub = [arr[i]];
-        let sum = arr[i];
-        for(let j=0;j<arr.length;j++){
-            if(i==j){
-                continue;
-            }
-            sum += arr[j];
-            if(sum<=n){
-                sub.push(arr[j]);
-            }else {
-                ans.push(sub);
-                sub = [];
-                break;
-            }
+    let result = [];
+    let subarray = [];
+    let sum = 0;
+
+    for(let i=0; i<arr.length; i++){
+        if(sum + arr[i] <= n){
+            subarray.push(arr[i]);
+            sum += arr[i];
+        } else {
+            result.push(subarray);
+            subarray = [arr[i]];
+            sum = arr[i];
         }
     }
-    if(sub.length != 0){
-        ans.push(sub);
+    if(subarray.length != 0){
+        result.push(subarray);
     }
-    return ans;
+    return result;
 };
 
 const n = prompt("Enter n: ");
